@@ -1,0 +1,10 @@
+all: exec
+exec: start.s util.c task2c.c
+	nasm -f elf32 start.s -o start.o
+	gcc -m32 -Wall -ansi -c -nostdlib -fno-stack-protector util.c -o util.o
+	gcc -m32 -Wall -ansi -c -nostdlib -fno-stack-protector task2c.c -o task2c.o
+	ld -m elf_i386 start.o task2c.o util.o -o flame2
+	rm task2c.o util.o start.o
+
+clean:
+	rm -rf ./*.o flame2
