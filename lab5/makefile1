@@ -1,0 +1,14 @@
+all: exec
+
+exec: LineParser.o task1.o
+	gcc -g -m32 LineParser.o task1.o -o myshell
+	rm LineParser.o task1.o
+
+LineParser.o: LineParser.c
+	gcc -g -m32 -c LineParser.c -o LineParser.o
+
+task1.o: task1.c
+	gcc -g -m32 -c task1.c -o task1.o
+
+clean:
+	rm -rf ./*.o myshell
